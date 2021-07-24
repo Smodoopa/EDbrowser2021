@@ -1,0 +1,120 @@
+body {
+    background-color: #131125;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: "Arial";
+}
+.header-bar {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+.header-bar img {
+    width: 30px;
+    height: 30px;
+    padding: 19px;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+}
+.browser-title {
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    -webkit-flex: 2 1 auto;
+    -ms-flex: 2 1 auto;
+    flex: 2 1 auto;
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+}
+.game-state-label {
+    text-align: right;
+    font-weight: 300;
+    margin-top: 30px;
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+}
+.content {
+    max-width: 800px;
+    width: 80%;
+    margin-bottom: 3em;
+    /* text-align: center; */
+}
+.loading {
+    height: 70px;
+}
+.reload {
+    width: 20px !important;
+    height: 20px !important;
+    padding: 10px !important;
+    order: 3 !important;
+    display: block;
+    cursor: pointer;
+    opacity: 0.5;
+    margin-left: 10px;
+}
+.reload:hover {
+    opacity: 1;
+    border-radius: 10px;
+    background: #ffffff14;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9em;
+  }
+  
+  td, th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+  }
+  tr:first-child {
+    border-bottom: 1px solid white;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #000000c9;
+  }
+  @media (max-width:770px) {
+    .content {
+        width: 100%;
+    }
+    table {
+        font-size: 0.7em;
+    }
+    td, th {
+        padding: 5px;
+    }
+  }
