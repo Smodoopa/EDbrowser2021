@@ -2,9 +2,14 @@ const ENDPOINT = "http://158.69.166.144:8080/list";
 var serverIPList, serverList = [], playerTotal = 0;
 
 const loadServerList = async () => {
-    const response = await fetch(ENDPOINT);
-    const data = await response.json();
-    serverIPList = data.result.servers;
+    await fetch(ENDPOINT)
+            .then(response => response.json())
+            .then(data => {
+                serverIPList = data.result.servers
+            })
+            .catch(error => {
+                console.log(error);
+            });
 
     await serverIPList.forEach(serverIP => {
         fetch('http://' + serverIP)
@@ -16,11 +21,12 @@ const loadServerList = async () => {
                 .catch(error => {
                     console.log(error)
                 })
-        });
+    });
 
-        serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
-        console.log(serverList);
-
+    setTimeout(() => {
+            serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
+            console.log(serverList);
+    }, 2000);
 };
 
 const displayServerList = () => {
@@ -52,7 +58,7 @@ const displayServer = (server) => {
 const loadData = async() => {
     await loadServerList();
     await displayServerList();
-    console.log("Welcome. :) :)");
+    console.log("Welcome. :) :) :)");
 }
 
 loadData();
