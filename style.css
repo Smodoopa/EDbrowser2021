@@ -88,6 +88,12 @@ body {
     border-radius: 10px;
     background: #ffffff14;
 }
+.gameServer {
+    cursor: pointer;
+}
+.gameServer:hover {
+    background-color: rgb(27, 27, 27);
+}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;

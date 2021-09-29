@@ -5,6 +5,24 @@ const loadServerList = async () => {
     const response = await fetch(ENDPOINT);
     const data = await response.json();
     serverIPList = data.result.servers;
+
+    serverIPList.forEach(serverIP => {
+    fetch (ENDPOINT)
+            .then(response => response.json())
+            .then(data => {
+                playerTotal += data.numPlayers
+                serverList.push(data);
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    });
+
+    serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
+    console.log(serverList);
+
+
+/*
     for (var i = 0; i < serverIPList.length; i++) {
         const response = await fetch('http://' + serverIPList[i]);
         const server = await response.json();
@@ -12,8 +30,9 @@ const loadServerList = async () => {
         serverList.push(server);
         //displayServer(server);
     }
-    serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
-    console.log(serverList);
+
+    */
+
 };
 
 const displayServerList = () => {
@@ -45,7 +64,7 @@ const displayServer = (server) => {
 const loadData = async() => {
     await loadServerList();
     await displayServerList();
-    console.log("Welcome, sir!");
+    console.log("APP LOADED!");
 }
 
 loadData();
