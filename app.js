@@ -64,7 +64,7 @@ const displayServer = (server) => {
 const loadData = async() => {
     await loadServerList();
     await displayServerList();
-    console.log("APP LOADED!");
+    console.log("Welcome. :)");
 }
 
 loadData();
