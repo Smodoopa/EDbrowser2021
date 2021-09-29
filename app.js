@@ -6,8 +6,8 @@ const loadServerList = async () => {
     const data = await response.json();
     serverIPList = data.result.servers;
 
-    serverList.forEach(serverIP => {
-    fetch (ENDPOINT)
+    serverIPList.forEach(serverIP => {
+    fetch (serverIP)
             .then(response => response.json())
             .then(data => {
                 playerTotal += data.numPlayers
