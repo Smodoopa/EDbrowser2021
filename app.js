@@ -6,7 +6,7 @@ const loadServerList = async () => {
     const data = await response.json();
     serverIPList = data.result.servers;
 
-    serverIPList.forEach(serverIP => {
+    serverList.forEach(serverIP => {
     fetch (ENDPOINT)
             .then(response => response.json())
             .then(data => {
