@@ -48,9 +48,9 @@ const reloadServerList = () => {
 const loadData = async() => {
     await loadServerList();
     setTimeout(() => {
-    await displayServerList();
+        displayServerList();
 }, 2000);
-    console.log("Welcome. :) :) :) :)");
+    console.log("Welcome. :) :) :) :) :)");
 }
 
 loadData();
