@@ -6,7 +6,7 @@ const loadServerList = async () => {
     const data = await response.json();
     serverIPList = data.result.servers;
 
-    serverIPList.forEach(serverIP => {
+    await serverIPList.forEach(serverIP => {
         fetch('http://' + serverIP)
                 .then(response => response.json())
                 .then(data => {
@@ -20,18 +20,6 @@ const loadServerList = async () => {
 
         serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
         console.log(serverList);
-
-
-/*
-    for (var i = 0; i < serverIPList.length; i++) {
-        const response = await fetch('http://' + serverIPList[i]);
-        const server = await response.json();
-        playerTotal += server.numPlayers;
-        serverList.push(server);
-        //displayServer(server);
-    }
-
-    */
 
 };
 
