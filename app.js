@@ -7,19 +7,19 @@ const loadServerList = async () => {
     serverIPList = data.result.servers;
 
     serverIPList.forEach(serverIP => {
-    fetch (serverIP)
-            .then(response => response.json())
-            .then(data => {
-                playerTotal += data.numPlayers
-                serverList.push(data);
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    });
+        fetch('http://' + serverIP)
+                .then(response => response.json())
+                .then(data => {
+                    playerTotal += data.numPlayers
+                    serverList.push(data);
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        });
 
-    serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
-    console.log(serverList);
+        serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
+        console.log(serverList);
 
 
 /*
@@ -64,7 +64,7 @@ const displayServer = (server) => {
 const loadData = async() => {
     await loadServerList();
     await displayServerList();
-    console.log("Welcome. :)");
+    console.log("Welcome. :) :)");
 }
 
 loadData();
