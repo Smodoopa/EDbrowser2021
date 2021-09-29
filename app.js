@@ -22,14 +22,10 @@ const loadServerList = async () => {
                     console.log(error)
                 })
     });
-
-    setTimeout(() => {
-            serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
-            console.log(serverList);
-    }, 2000);
 };
 
 const displayServerList = () => {
+    serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
     let serverTable = '';
     serverList.map(server => {
         let tableRow = '<tr><td>' + server.name + '</td><td>' + server.hostPlayer + '</td><td>' + server.map + '</td><td>' + server.variant + '</td><td>' + server.numPlayers + '/' + server.maxPlayers + '</td></tr>';
@@ -49,16 +45,12 @@ const reloadServerList = () => {
     loadData();
 }
 
-const displayServer = (server) => {
-    let tableRow = '<tr><td>' + server.name + '</td><td>' + server.hostPlayer + '</td><td>' + server.map + '</td><td>' + server.variant + '</td><td>' + server.numPlayers + '/' + server.maxPlayers + '</td></tr>';
-    $('table').append(tableRow);
-    $('.game-state-label').text(playerTotal + " Players / " + serverIPList.length + " Servers");
-}
-
 const loadData = async() => {
     await loadServerList();
+    setTimeout(() => {
     await displayServerList();
-    console.log("Welcome. :) :) :)");
+}, 2000);
+    console.log("Welcome. :) :) :) :)");
 }
 
 loadData();
