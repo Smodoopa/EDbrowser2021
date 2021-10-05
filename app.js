@@ -1,8 +1,7 @@
 const ENDPOINT = "http://158.69.166.144:8080/list";
 var serverIPList, serverList = [], playerTotal = 0;
 
-const loadServerList = async () => {
-    await fetch(ENDPOINT)
+const loadServerIPs = fetch(ENDPOINT)
             .then(response => response.json())
             .then(data => {
                 serverIPList = data.result.servers
@@ -11,18 +10,13 @@ const loadServerList = async () => {
                 console.log(error);
             });
 
-    await serverIPList.forEach(serverIP => {
-        fetch('http://' + serverIP)
-                .then(response => response.json())
-                .then(data => {
-                    playerTotal += data.numPlayers
-                    serverList.push(data);
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-    });
-};
+const loadServerList = Promise.all(serverIPList.map(url =>
+        fetch('http://' + url).then(resp => resp.json())
+        )).then(data => {
+            penis = data;
+        }).catch(err => 
+            console.log(err)
+        );
 
 const displayServerList = () => {
     serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
@@ -46,11 +40,12 @@ const reloadServerList = () => {
 }
 
 const loadData = async() => {
-    await loadServerList();
-    setTimeout(() => {
-        displayServerList();
-}, 1000);
-    console.log("Welcome. :) :) :) :) :)");
+    await loadServerIPs;
+    await loadServerList;
+    
+    displayServerList();
+
+    console.log("Here's everything. :)");
 }
 
 loadData();
