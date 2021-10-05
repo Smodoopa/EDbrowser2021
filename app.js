@@ -13,7 +13,7 @@ const loadServerIPs = fetch(ENDPOINT)
 const loadServerList = Promise.all(serverIPList.map(url =>
         fetch('http://' + url).then(resp => resp.json())
         )).then(data => {
-            penis = data;
+            serverList = data;
         }).catch(err => 
             console.log(err)
         );
