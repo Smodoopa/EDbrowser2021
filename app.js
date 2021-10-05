@@ -41,8 +41,9 @@ const reloadServerList = () => {
 
 const loadData = async() => {
     await loadServerIPs;
+    console.log(serverIPList);
     await loadServerList;
-    
+    console.log(serverList);
     displayServerList();
 
     console.log("Here's everything. :)");
