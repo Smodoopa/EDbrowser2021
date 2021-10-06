@@ -40,9 +40,9 @@ const reloadServerList = () => {
 }
 
 const loadData = async() => {
-    await loadServerIPs;
+    await loadServerIPs();
     console.log(serverIPList);
-    await loadServerList;
+    await loadServerList();
     console.log(serverList);
     displayServerList();
 
