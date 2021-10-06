@@ -1,7 +1,7 @@
 const ENDPOINT = "http://158.69.166.144:8080/list";
 var serverIPList, serverList = [], playerTotal = 0;
 
-const loadServerIPs = fetch(ENDPOINT)
+const loadServerIPs = () => fetch(ENDPOINT)
             .then(response => response.json())
             .then(data => {
                 serverIPList = data.result.servers
@@ -10,7 +10,7 @@ const loadServerIPs = fetch(ENDPOINT)
                 console.log(error);
             });
 
-const loadServerList = Promise.all(serverIPList.map(url =>
+const loadServerList = () => Promise.all(serverIPList.map(url =>
         fetch('http://' + url).then(resp => resp.json())
         )).then(data => {
             serverList = data;
