@@ -41,24 +41,29 @@ const reloadServerList = () => {
 }
 
 const toggleModal = (listIndex) => {
-    $('.server-modal').toggle();
-    console.log(serverList[listIndex.rowIndex - 1]);
-    let playerTable = '',
-    serverPlayers = serverList[listIndex.rowIndex - 1].players;
+    if ($('.server-modal').css('display') == "none") {
+        $('.server-modal').css('display', 'flex');
 
-    console.log(serverPlayers);
-    serverPlayers.map(player => {
-        let tableRow = '<tr><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td></tr>';
-        playerTable += tableRow;
-    });
-    $('.player-table').append(playerTable);
+        let playerTable = '',
+        serverPlayers = serverList[listIndex.rowIndex - 1].players;
+
+        serverPlayers.map(player => {
+            let tableRow = '<tr><td>' + player.name + ' [' + player.serviceTag + ']</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
+            playerTable += tableRow;
+        });
+        $('.player-table').append(playerTable);
+
+    } else {
+        $('.server-modal').css('display', 'none');
+        $('.server-modal > table > tbody').find("tr:gt(0)").remove();
+    }
+    
+
 }
 
 const loadData = async() => {
     await loadServerIPs();
-    console.log(serverIPList);
     await loadServerList();
-    console.log(serverList);
     displayServerList();
 
     console.log("Here's everything. :)");
