@@ -11,7 +11,8 @@ const loadServerIPs = () => fetch(ENDPOINT)
             });
 
 const loadServerList = () => Promise.all(serverIPList.map(url =>
-        fetch('http://' + url).then(resp => resp.json())
+        fetch('http://' + url)
+        .then(resp => resp.json())
         )).then(data => {
             serverList = data;
         }).catch(err => 
@@ -22,11 +23,11 @@ const displayServerList = () => {
     serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
     let serverTable = '';
     serverList.map(server => {
-        let tableRow = '<tr><td>' + server.name + '</td><td>' + server.hostPlayer + '</td><td>' + server.map + '</td><td>' + server.variant + '</td><td>' + server.numPlayers + '/' + server.maxPlayers + '</td></tr>';
+        let tableRow = '<tr onclick = toggleModal(this)><td>' + server.name + '</td><td>' + server.hostPlayer + '</td><td>' + server.map + '</td><td>' + server.variant + '</td><td>' + server.numPlayers + '/' + server.maxPlayers + '</td></tr>';
         serverTable += tableRow;
     });
     $('.loading').hide();
-    $('table').append(serverTable);
+    $('.server-table').append(serverTable);
     $('.game-state-label').text(playerTotal + " Players / " + serverIPList.length + " Servers");
 }
 
@@ -37,6 +38,20 @@ const reloadServerList = () => {
     $('tbody').find("tr:gt(0)").remove();
     $('.loading').show();
     loadData();
+}
+
+const toggleModal = (listIndex) => {
+    $('.server-modal').toggle();
+    console.log(serverList[listIndex.rowIndex - 1]);
+    let playerTable = '',
+    serverPlayers = serverList[listIndex.rowIndex - 1].players;
+
+    console.log(serverPlayers);
+    serverPlayers.map(player => {
+        let tableRow = '<tr><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td></tr>';
+        playerTable += tableRow;
+    });
+    $('.player-table').append(playerTable);
 }
 
 const loadData = async() => {

@@ -5,6 +5,17 @@
         <script src="app.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
+    <div class="server-modal">
+        <img class="close-btn" src="x.png" onclick="toggleModal()"></img>
+        <table class="player-table">
+            <tr>
+                <th>Name</th>
+                <th>Service Tag</th>
+                <th>Kills</th>
+                <th>Deaths</th>
+            </tr>
+        </table>
+    </div>
     <body>
         <div class="content">
             <div class="header-bar">
@@ -13,7 +24,7 @@
                 <h5 class="game-state-label">0 Players / 0 Servers</h5>
                 <img onclick = "reloadServerList()" class="reload" src="reload.png"></img>
             </div>
-            <table>
+            <table class="server-table">
                 <tr>
                     <th>Name</th>
                     <th>Host</th>
@@ -21,9 +32,6 @@
                     <th>Gametype</th>
                     <th>Players</th>
                   </tr>
-                  
-                  
-                  
             </table>
             <img class="loading" src="loading.gif"></img>
         </div>
