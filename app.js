@@ -15,12 +15,12 @@ const loadServerList = () => Promise.all(serverIPList.map(url =>
         .then(resp => resp.json())
         )).then(data => {
             serverList = data;
+            serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
         }).catch(err => 
             console.log(err)
         );
 
 const displayServerList = () => {
-    serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
     let serverTable = '';
     serverList.map(server => {
         let tableRow = '<tr onclick = toggleModal(this)><td>' + server.name + '</td><td>' + server.hostPlayer + '</td><td>' + server.map + '</td><td>' + server.variant + '</td><td>' + server.numPlayers + '/' + server.maxPlayers + '</td></tr>';
@@ -47,10 +47,13 @@ const toggleModal = (listIndex) => {
         let playerTable = '',
         serverPlayers = serverList[listIndex.rowIndex - 1].players;
 
+        serverPlayers.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
+
         serverPlayers.map(player => {
-            let tableRow = '<tr><td>' + player.name + ' [' + player.serviceTag + ']</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
+            let tableRow = '<tr style="background-color:' + player.primaryColor + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
             playerTable += tableRow;
         });
+
         $('.player-table').append(playerTable);
 
     } else {
