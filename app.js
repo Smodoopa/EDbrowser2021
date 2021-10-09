@@ -10,11 +10,14 @@ const loadServerIPs = () => fetch(ENDPOINT)
                 console.log(error);
             });
 
-const loadServerList = () => Promise.all(serverIPList.map(url =>
+const loadServerList = () => Promise.all(serverIPList.map(url => 
         fetch('http://' + url)
         .then(resp => resp.json())
         )).then(data => {
             serverList = data;
+            for (var i = 0; i < serverList.length; i++) 
+                serverList[i].mods.push(serverIPList[i]);
+            
             serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
             console.log(data);
         }).catch(err => 
@@ -56,11 +59,12 @@ const toggleModal = (listIndex) => {
             playerTable += tableRow;
         });
 
+        $('.server-map-image').attr("src", selectedServer.mapFile + ".png");       
         $('.server-header').text(selectedServer.variant + ' on ' + selectedServer.map);
-        $('.host').text("Host: " + selectedServer.hostPlayer);
-        $('.name').text("Name: " + selectedServer.name);
-        $('.ip').text("IP: ");
-        $('.status').text('Game Status: ' + selectedServer.status)
+        $('.host').html(selectedServer.hostPlayer);
+        $('.name').html(selectedServer.name);
+        $('.ip').html(selectedServer.mods[0]);
+        $('.status').html(selectedServer.status)
         $('.player-table').append(playerTable);
 
     } else {

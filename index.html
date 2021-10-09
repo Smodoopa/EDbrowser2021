@@ -6,16 +6,16 @@
         <script src="app.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
-    <div class="server-modal">
+     <div class="server-modal">
         <img class="close-btn" src="x.png" onclick="toggleModal()"></img>
         <div class="server-details">
             <div class="server-header"></div>
-            <img src="http://scooterpsu.github.io/images/maps/zanzibar.png"></img>
+            <img class="server-map-image" src="http://scooterpsu.github.io/images/maps/zanzibar.png"></img>
             <div class="server-text">
-                <div class="host">Host:</div>
-                <div class="name">Name:</div>
-                <div class="ip">IP:</div>
-                <div class="status">Game Status:</div>    
+                <div>Host: <span class="host"></span></div>
+                <div>Name: <span class="name"></span></div>
+                <div>IP: <span class="ip"></span></div>
+                <div>Game Status: <span class="status"></span></div>
             </div>
         </div>
         <table class="player-table">

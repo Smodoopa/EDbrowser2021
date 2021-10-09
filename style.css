@@ -7,6 +7,7 @@ body {
 }
 .server-modal {
     width: 100%;
+    top: 0px;
     position: fixed;
     height: 100%;
     background-color: #000000e3;
@@ -15,11 +16,10 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    z-index: 1;
 }
 .player-table {
     background-color: #0b0918;
-    /*border-radius: 10px;*/
-    padding: 35px;
     width: 37em;
 }
 .server-details {
@@ -29,6 +29,9 @@ body {
     width: 37em;
     height: 380px;
     background: #1a1a1a;
+}
+.server-map-image {
+    box-shadow: black 0px 0px 0px 1px;
 }
 .player-table-columns {
     background-color: black;
@@ -42,19 +45,26 @@ body {
     cursor: pointer;
     padding: 12px;
 }
-.server-details {
-    width: 50%;
-    height: 380px;
-    background: #1a1a1a;
-}
 .server-header {
-    background-color: black;
+    background-color: #1a1a1a;
     text-align: center;
     font-weight: 600;
     padding: 6px;
 }
 .server-text {
     padding: 7px;
+}
+.host {
+    font-weight: 700;   
+}
+.name {
+    font-weight: 700;
+}
+.ip {
+    font-weight: 700;
+}
+.status {
+    font-weight: 700;
 }
 .header-bar {
     display: -ms-flexbox;
@@ -156,7 +166,7 @@ body {
     /* border: 1px solid #dddddd; */
     text-align: left;
     padding: 8px;
-    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
   }
   tr:first-child {
     border-bottom: 1px solid white;
