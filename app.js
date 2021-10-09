@@ -16,6 +16,7 @@ const loadServerList = () => Promise.all(serverIPList.map(url =>
         )).then(data => {
             serverList = data;
             serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
+            console.log(data);
         }).catch(err => 
             console.log(err)
         );
@@ -45,6 +46,7 @@ const toggleModal = (listIndex) => {
         $('.server-modal').css('display', 'flex');
 
         let playerTable = '',
+        selectedServer = serverList[listIndex.rowIndex - 1],
         serverPlayers = serverList[listIndex.rowIndex - 1].players;
 
         serverPlayers.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
@@ -54,14 +56,17 @@ const toggleModal = (listIndex) => {
             playerTable += tableRow;
         });
 
+        $('.server-header').text(selectedServer.variant + ' on ' + selectedServer.map);
+        $('.host').text("Host: " + selectedServer.hostPlayer);
+        $('.name').text("Name: " + selectedServer.name);
+        $('.ip').text("IP: ");
+        $('.status').text('Game Status: ' + selectedServer.status)
         $('.player-table').append(playerTable);
 
     } else {
         $('.server-modal').css('display', 'none');
         $('.server-modal > table > tbody').find("tr:gt(0)").remove();
     }
-    
-
 }
 
 const loadData = async() => {
