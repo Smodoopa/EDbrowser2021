@@ -50,14 +50,72 @@ const toggleModal = (listIndex) => {
 
         let playerTable = '',
         selectedServer = serverList[listIndex.rowIndex - 1],
-        serverPlayers = serverList[listIndex.rowIndex - 1].players;
+        serverPlayers = serverList[listIndex.rowIndex - 1].players,
+        sortedTeams = [];
 
-        serverPlayers.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
+            if (selectedServer.teams) {
+                for (var i = 0; i < 9; i++) {
+                    let tempTeamArray = [];
+                    serverPlayers.forEach(player => {
+                        if (player.team == i) 
+                            tempTeamArray.push(player);
+                    })
+                    tempTeamArray.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
+                    console.log(tempTeamArray);
+                    sortedTeams.push(tempTeamArray);
+                }
+                console.log(sortedTeams);
+                //At this point we should have an array with all the individual teams sorted in order of score.
+                
+                //Determine Team Order
+                for (var i = 0; i < 8; i++) {
+                    let indexOfGreatest = selectedServer.teamScores.indexOf(Math.max(...selectedServer.teamScores));
 
-        serverPlayers.map(player => {
-            let tableRow = '<tr style="background-color:' + player.primaryColor + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
-            playerTable += tableRow;
-        });
+                    sortedTeams[indexOfGreatest].forEach(player => {
+                            let playerColor;
+                            switch(player.team) {
+                                case 0:
+                                    playerColor = 'f8332d';
+                                    break;
+                                case 1:
+                                    playerColor = '3c7ed4';
+                                    break;
+                                case 2:
+                                    playerColor = 'green';
+                                    break;
+                                case 3:
+                                    playerColor = 'gold';
+                                    break;
+                                case 4:
+                                    playerColor = 'purple';
+                                    break;
+                                case 5:
+                                    playerColor = 'yellow';
+                                    break;
+                                case 6:
+                                    playerColor = 'brown';
+                                    break;
+                                case 7:
+                                    playerColor = 'pink';
+                                    break;
+                                default:
+                                    playerColor = 'white';
+                                break;
+                            }
+                             let tableRow = '<tr style="background-color:' + playerColor + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
+                             playerTable += tableRow;
+                        });
+
+                    selectedServer.teamScores[indexOfGreatest] = -2;
+                }
+
+            } else {
+                serverPlayers.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
+                serverPlayers.map(player => {
+                 let tableRow = '<tr style="background-color:' + player.primaryColor + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
+                 playerTable += tableRow;
+                });
+             }      
 
         $('.server-map-image').attr("src", selectedServer.mapFile + ".png");       
         $('.server-header').text(selectedServer.variant + ' on ' + selectedServer.map);
@@ -72,6 +130,8 @@ const toggleModal = (listIndex) => {
         $('.server-modal > table > tbody').find("tr:gt(0)").remove();
     }
 }
+
+
 
 const loadData = async() => {
     await loadServerIPs();
