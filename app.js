@@ -52,7 +52,7 @@ const toggleModal = (listIndex) => {
         selectedServer = serverList[listIndex.rowIndex - 1],
         serverPlayers = serverList[listIndex.rowIndex - 1].players,
         sortedTeams = [],
-        originalTeamScores = JSON.parse(JSON.stringify(serverList[listIndex.rowIndex - 1].teamScores));
+        originalTeamScores = JSON.stringify(serverList[listIndex.rowIndex - 1].teamScores);
         
 
             if (selectedServer.teams) {
