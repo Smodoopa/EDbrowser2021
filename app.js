@@ -51,9 +51,12 @@ const toggleModal = (listIndex) => {
         let playerTable = '',
         selectedServer = serverList[listIndex.rowIndex - 1],
         serverPlayers = serverList[listIndex.rowIndex - 1].players,
-        sortedTeams = [];
+        sortedTeams = [],
+        originalTeamScores = JSON.parse(JSON.stringify(serverList[listIndex.rowIndex - 1].teamScores));
+        
 
             if (selectedServer.teams) {
+
                 for (var i = 0; i < 9; i++) {
                     let tempTeamArray = [];
                     serverPlayers.forEach(player => {
@@ -61,16 +64,13 @@ const toggleModal = (listIndex) => {
                             tempTeamArray.push(player);
                     })
                     tempTeamArray.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
-                    console.log(tempTeamArray);
                     sortedTeams.push(tempTeamArray);
                 }
-                console.log(sortedTeams);
-                //At this point we should have an array with all the individual teams sorted in order of score.
+
                 
-                //Determine Team Order
                 for (var i = 0; i < 8; i++) {
                     let indexOfGreatest = selectedServer.teamScores.indexOf(Math.max(...selectedServer.teamScores));
-
+                    
                     sortedTeams[indexOfGreatest].forEach(player => {
                             let playerColor;
                             switch(player.team) {
@@ -103,11 +103,14 @@ const toggleModal = (listIndex) => {
                                 break;
                             }
                              let tableRow = '<tr style="background-color:' + playerColor + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
+                             
                              playerTable += tableRow;
                         });
 
                     selectedServer.teamScores[indexOfGreatest] = -2;
                 }
+
+                serverList[listIndex.rowIndex - 1].teamScores = originalTeamScores;
 
             } else {
                 serverPlayers.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
@@ -117,12 +120,15 @@ const toggleModal = (listIndex) => {
                 });
              }      
 
+        
+        
         $('.server-map-image').attr("src", selectedServer.mapFile + ".png");       
         $('.server-header').text(selectedServer.variant + ' on ' + selectedServer.map);
         $('.host').html(selectedServer.hostPlayer);
         $('.name').html(selectedServer.name);
         $('.ip').html(selectedServer.mods[0]);
-        $('.status').html(selectedServer.status)
+        $('.status').html(selectedServer.status);
+
         $('.player-table').append(playerTable);
 
     } else {
