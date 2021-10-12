@@ -1,5 +1,8 @@
-const ENDPOINT = "http://158.69.166.144:8080/list";
+const ENDPOINT = "http://158.69.166.144:8080/list",
+teamColorCodes = ['f8332d', '3c7ed4', 'green', 'gold', 'purple', 'yellow', 'brown', 'pink', 'white'],
+teamNames = ["Red", "Blue", "Green", "Gold", "Purple", "Yellow", "Brown", "Pink"];
 var serverIPList, serverList = [], playerTotal = 0;
+
 
 const loadServerIPs = () => fetch(ENDPOINT)
             .then(response => response.json())
@@ -52,11 +55,11 @@ const toggleModal = (listIndex) => {
         selectedServer = serverList[listIndex.rowIndex - 1],
         serverPlayers = serverList[listIndex.rowIndex - 1].players,
         sortedTeams = [],
-        originalTeamScores = JSON.stringify(serverList[listIndex.rowIndex - 1].teamScores);
+        originalTeamScores = JSON.parse(JSON.stringify(serverList[listIndex.rowIndex - 1].teamScores));
         
-
+        console.log(originalTeamScores)
             if (selectedServer.teams) {
-
+                
                 for (var i = 0; i < 9; i++) {
                     let tempTeamArray = [];
                     serverPlayers.forEach(player => {
@@ -70,39 +73,11 @@ const toggleModal = (listIndex) => {
                 
                 for (var i = 0; i < 8; i++) {
                     let indexOfGreatest = selectedServer.teamScores.indexOf(Math.max(...selectedServer.teamScores));
-                    
-                    sortedTeams[indexOfGreatest].forEach(player => {
-                            let playerColor;
-                            switch(player.team) {
-                                case 0:
-                                    playerColor = 'f8332d';
-                                    break;
-                                case 1:
-                                    playerColor = '3c7ed4';
-                                    break;
-                                case 2:
-                                    playerColor = 'green';
-                                    break;
-                                case 3:
-                                    playerColor = 'gold';
-                                    break;
-                                case 4:
-                                    playerColor = 'purple';
-                                    break;
-                                case 5:
-                                    playerColor = 'yellow';
-                                    break;
-                                case 6:
-                                    playerColor = 'brown';
-                                    break;
-                                case 7:
-                                    playerColor = 'pink';
-                                    break;
-                                default:
-                                    playerColor = 'white';
-                                break;
-                            }
-                             let tableRow = '<tr style="background-color:' + playerColor + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
+
+                    sortedTeams[indexOfGreatest].forEach((player, index) => {
+                            if (index == 0) playerTable += '<tr style="background-color:' + teamColorCodes[i] + '"><td>' + teamNames[i] + ' Team</td><td></td><td>' + selectedServer.teamScores[i] + '</td><td></td><td></td><td></td></tr>';
+
+                             let tableRow = '<tr style="background-color:' + teamColorCodes[player.team] + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
                              
                              playerTable += tableRow;
                         });
@@ -120,8 +95,6 @@ const toggleModal = (listIndex) => {
                 });
              }      
 
-        
-        
         $('.server-map-image').attr("src", selectedServer.mapFile + ".png");       
         $('.server-header').text(selectedServer.variant + ' on ' + selectedServer.map);
         $('.host').html(selectedServer.hostPlayer);
