@@ -129,7 +129,6 @@ body {
     max-width: 800px;
     width: 80%;
     margin-bottom: 3em;
-    /* text-align: center; */
 }
 .loading {
     height: 70px;
@@ -179,8 +178,10 @@ body {
     cursor: pointer;
     background-color: #ffffff21;
 }
-  @media (max-width:770px) {
+
+  @media all and (max-width: 750px) {
     .content {
+        max-width: 100%;
         width: 100%;
     }
     table {
