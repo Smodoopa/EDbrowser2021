@@ -184,6 +184,22 @@ body {
         max-width: 100%;
         width: 100%;
     }
+    .server-table {
+        font-size: 0.7em;
+    }
+    .header-bar {
+        font-size: 10px;
+    }
+    .header-bar img {
+        width: 25px;
+        height: 25px;
+        padding: 11px;
+    }
+    .game-state-label {
+        margin-top: 20px;
+        text-align: right;
+        font-weight: 500; 
+    }
     table {
         font-size: 0.7em;
     }
