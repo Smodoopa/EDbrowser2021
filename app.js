@@ -54,12 +54,15 @@ const toggleModal = (listIndex) => {
         let playerTable = '',
         selectedServer = serverList[listIndex.rowIndex - 1],
         serverPlayers = serverList[listIndex.rowIndex - 1].players,
-        sortedTeams = [],
-        originalTeamScores = JSON.parse(JSON.stringify(serverList[listIndex.rowIndex - 1].teamScores));
-        
-        console.log(originalTeamScores)
+        sortedTeams = [];
+
             if (selectedServer.teams) {
+                console.log("TEAM");
+                let originalTeamScores = JSON.parse(JSON.stringify(selectedServer.teamScores));
+                console.log(originalTeamScores);
                 
+                //Sorting Players of each Team.
+                //Add sorted teams to the main array.
                 for (var i = 0; i < 9; i++) {
                     let tempTeamArray = [];
                     serverPlayers.forEach(player => {
@@ -72,8 +75,8 @@ const toggleModal = (listIndex) => {
 
                 
                 for (var i = 0; i < 8; i++) {
-                    let indexOfGreatest = selectedServer.teamScores.indexOf(Math.max(...selectedServer.teamScores));
-
+                    let indexOfGreatest = originalTeamScores.indexOf(Math.max(...originalTeamScores));
+                    console.log(indexOfGreatest);
                     sortedTeams[indexOfGreatest].forEach((player, index) => {
                             if (index == 0) playerTable += '<tr style="background-color:' + teamColorCodes[i] + '"><td>' + teamNames[i] + ' Team</td><td></td><td>' + selectedServer.teamScores[i] + '</td><td></td><td></td><td></td></tr>';
 
@@ -82,12 +85,13 @@ const toggleModal = (listIndex) => {
                              playerTable += tableRow;
                         });
 
-                    selectedServer.teamScores[indexOfGreatest] = -2;
+                    originalTeamScores[indexOfGreatest] = -2;
                 }
 
-                serverList[listIndex.rowIndex - 1].teamScores = originalTeamScores;
+                //serverList[listIndex.rowIndex - 1].teamScores = originalTeamScores;
 
             } else {
+                console.log("FFA");
                 serverPlayers.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
                 serverPlayers.map(player => {
                  let tableRow = '<tr style="background-color:' + player.primaryColor + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
