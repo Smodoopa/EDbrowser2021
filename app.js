@@ -88,8 +88,6 @@ const toggleModal = (listIndex) => {
                     originalTeamScores[indexOfGreatest] = -2;
                 }
 
-                //serverList[listIndex.rowIndex - 1].teamScores = originalTeamScores;
-
             } else {
                 console.log("FFA");
                 serverPlayers.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
