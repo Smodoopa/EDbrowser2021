@@ -78,7 +78,7 @@ const toggleModal = (listIndex) => {
                     let indexOfGreatest = originalTeamScores.indexOf(Math.max(...originalTeamScores));
                     console.log(indexOfGreatest);
                     sortedTeams[indexOfGreatest].forEach((player, index) => {
-                            if (index == 0) playerTable += '<tr style="background-color:' + teamColorCodes[i] + '"><td>' + teamNames[i] + ' Team</td><td></td><td>' + selectedServer.teamScores[i] + '</td><td></td><td></td><td></td></tr>';
+                            if (index == 0) playerTable += '<tr style="background-color:' + teamColorCodes[player.team] + '"><td>' + teamNames[player.team] + ' Team</td><td></td><td>' + selectedServer.teamScores[i] + '</td><td></td><td></td><td></td></tr>';
 
                              let tableRow = '<tr style="background-color:' + teamColorCodes[player.team] + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
                              
