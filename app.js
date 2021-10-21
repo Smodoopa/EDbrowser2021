@@ -34,6 +34,7 @@ const displayServerList = () => {
         serverTable += tableRow;
     });
     $('.loading').hide();
+    $('.footer').show();
     $('.server-table').append(serverTable);
     $('.game-state-label').text(playerTotal + " Players / " + serverIPList.length + " Servers");
 }
@@ -44,6 +45,7 @@ const reloadServerList = () => {
     playerTotal = 0;
     $('tbody').find("tr:gt(0)").remove();
     $('.loading').show();
+    $('.footer').hide();
     loadData();
 }
 
