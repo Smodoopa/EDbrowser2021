@@ -179,9 +179,6 @@ body {
     background-color: #ffffff21;
 }
   @media all and (max-width: 500px) {
-    body {
-        background-color: red;
-    }
     .server-table {
         font-size: 0.5em !important;
     }
