@@ -213,6 +213,13 @@ body {
     }
     .server-details {
         width: 100% !important;
+        height: auto !important;
+    }
+    .server-modal {
+        justify-content: start !important;
+    }
+    .server-modal > table > tbody > tr {
+        font-size: 11px !important;
     }
   }
 
