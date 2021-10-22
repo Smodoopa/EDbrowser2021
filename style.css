@@ -183,6 +183,10 @@ body {
     padding: 8px;
     text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
   }
+  .server-modal > table > tbody > tr {
+    line-height: 10px;
+    font-size: 13px;
+  }
   tr:first-child {
     border-bottom: 1px solid white;
   }
@@ -194,6 +198,12 @@ body {
     cursor: pointer;
     background-color: #ffffff21;
 }
+ @media all and (max-width: 350px) {
+    .server-table {
+        font-size: 0.4em !important;
+    }
+  }
+
   @media all and (max-width: 500px) {
     .server-table {
         font-size: 0.5em !important;

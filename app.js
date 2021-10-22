@@ -3,6 +3,173 @@ teamColorCodes = ['f8332d', '3c7ed4', 'green', 'gold', 'purple', 'yellow', 'brow
 teamNames = ["Red", "Blue", "Green", "Gold", "Purple", "Yellow", "Brown", "Pink"];
 var serverIPList, serverList = [], playerTotal = 0;
 
+const testServer = {
+    "name": "Example Server",
+    "port": 11774,
+    "hostPlayer": "Smodoopa",
+    "sprintEnabled": "0",
+    "sprintUnlimitedEnabled": "0",
+    "dualWielding": "1",
+    "assassinationEnabled": "0",
+    "votingEnabled": false,
+    "teams": true,
+    "map": "Narrows",
+    "mapFile": "chill",
+    "variant": "Forge",
+    "variantType": "forge",
+    "status": "InGame",
+    "numPlayers": 8,
+    "mods": [
+        "71.192.193.104:11775"
+    ],
+    "maxPlayers": 16,
+    "xnkid": "c4e502d122f9304a88829169c67920e9",
+    "xnaddr": "12406f5364c60748b8a5deea71656653",
+    "teamScores": [
+        10,
+        12,
+        6,
+        14,
+        -1,
+        -1,
+        -1,
+        -1
+    ],
+    "players": [
+        {
+            "name": "Smodoopa",
+            "serviceTag": "VDFD",
+            "team": 0,
+            "uid": "ac8288776f589772",
+            "primaryColor": "#000000",
+            "isAlive": true,
+            "score": 8,
+            "kills": 8,
+            "assists": 0,
+            "deaths": 0,
+            "betrayals": 0,
+            "timeSpentAlive": 1890,
+            "suicides": 0,
+            "bestStreak": 0
+        },
+        {
+            "name": "Smodoopa2",
+            "serviceTag": "VDFD",
+            "team": 0,
+            "uid": "ac8288776f589772",
+            "primaryColor": "#000000",
+            "isAlive": true,
+            "score": 2,
+            "kills": 2,
+            "assists": 0,
+            "deaths": 0,
+            "betrayals": 0,
+            "timeSpentAlive": 1890,
+            "suicides": 0,
+            "bestStreak": 0
+        },
+        {
+            "name": "Smodoopa3",
+            "serviceTag": "VDFD",
+            "team": 1,
+            "uid": "ac8288776f589772",
+            "primaryColor": "#000000",
+            "isAlive": true,
+            "score": 8,
+            "kills": 8,
+            "assists": 0,
+            "deaths": 0,
+            "betrayals": 0,
+            "timeSpentAlive": 1890,
+            "suicides": 0,
+            "bestStreak": 0
+        },
+        {
+            "name": "Smodoopa4",
+            "serviceTag": "VDFD",
+            "team": 1,
+            "uid": "ac8288776f589772",
+            "primaryColor": "#000000",
+            "isAlive": true,
+            "score": 4,
+            "kills": 4,
+            "assists": 0,
+            "deaths": 0,
+            "betrayals": 0,
+            "timeSpentAlive": 1890,
+            "suicides": 0,
+            "bestStreak": 0
+        },
+        {
+            "name": "Smodoopa5",
+            "serviceTag": "VDFD",
+            "team": 2,
+            "uid": "ac8288776f589772",
+            "primaryColor": "#000000",
+            "isAlive": true,
+            "score": 3,
+            "kills": 3,
+            "assists": 0,
+            "deaths": 0,
+            "betrayals": 0,
+            "timeSpentAlive": 1890,
+            "suicides": 0,
+            "bestStreak": 0
+        },
+        {
+            "name": "Smodoopa6",
+            "serviceTag": "VDFD",
+            "team": 2,
+            "uid": "ac8288776f589772",
+            "primaryColor": "#000000",
+            "isAlive": true,
+            "score": 3,
+            "kills": 3,
+            "assists": 0,
+            "deaths": 0,
+            "betrayals": 0,
+            "timeSpentAlive": 1890,
+            "suicides": 0,
+            "bestStreak": 0
+        },
+        {
+            "name": "Smodoopa7",
+            "serviceTag": "VDFD",
+            "team": 3,
+            "uid": "ac8288776f589772",
+            "primaryColor": "#000000",
+            "isAlive": true,
+            "score": 10,
+            "kills": 10,
+            "assists": 0,
+            "deaths": 0,
+            "betrayals": 0,
+            "timeSpentAlive": 1890,
+            "suicides": 0,
+            "bestStreak": 0
+        },
+        {
+            "name": "Smodoopa8",
+            "serviceTag": "VDFD",
+            "team": 3,
+            "uid": "ac8288776f589772",
+            "primaryColor": "#000000",
+            "isAlive": true,
+            "score": 4,
+            "kills": 4,
+            "assists": 0,
+            "deaths": 0,
+            "betrayals": 0,
+            "timeSpentAlive": 1890,
+            "suicides": 0,
+            "bestStreak": 0
+        }
+    ],
+    "isDedicated": false,
+    "gameVersion": "1.106708_cert_ms23___release",
+    "eldewritoVersion": "0.6.1.0"
+};
+
 
 const loadServerIPs = () => fetch(ENDPOINT)
             .then(response => response.json())
@@ -29,6 +196,7 @@ const loadServerList = () => Promise.all(serverIPList.map(url =>
 
 const displayServerList = () => {
     let serverTable = '';
+    serverList.unshift(testServer);
     serverList.map(server => {
         let tableRow = '<tr onclick = toggleModal(this)><td>' + server.name + '</td><td>' + server.hostPlayer + '</td><td>' + server.map + '</td><td>' + server.variant + '</td><td>' + server.numPlayers + '/' + server.maxPlayers + '</td></tr>';
         serverTable += tableRow;
@@ -74,13 +242,14 @@ const toggleModal = (listIndex) => {
                     tempTeamArray.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
                     sortedTeams.push(tempTeamArray);
                 }
-
+                
+                console.log(sortedTeams);
                 
                 for (var i = 0; i < 8; i++) {
                     let indexOfGreatest = originalTeamScores.indexOf(Math.max(...originalTeamScores));
                     console.log(indexOfGreatest);
                     sortedTeams[indexOfGreatest].forEach((player, index) => {
-                            if (index == 0) playerTable += '<tr style="background-color:' + teamColorCodes[player.team] + '"><td>' + teamNames[player.team] + ' Team</td><td></td><td>' + selectedServer.teamScores[i] + '</td><td></td><td></td><td></td></tr>';
+                            if (index == 0) playerTable += '<tr style="background-color:' + teamColorCodes[player.team] + '"><td>' + teamNames[player.team] + ' Team</td><td></td><td>' + selectedServer.teamScores[player.team] + '</td><td></td><td></td><td></td></tr>';
 
                              let tableRow = '<tr style="background-color:' + teamColorCodes[player.team] + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
                              
