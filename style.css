@@ -208,6 +208,12 @@ body {
     .server-table {
         font-size: 0.5em !important;
     }
+    .player-table {
+        width: 100% !important;
+    }
+    .server-details {
+        width: 100% !important;
+    }
   }
 
   @media all and (max-width: 750px) {
