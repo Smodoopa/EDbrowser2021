@@ -181,7 +181,7 @@ body {
     /* border: 1px solid #dddddd; */
     text-align: left;
     padding: 8px;
-    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
+    text-shadow: black 0px 0px 10px;
   }
   .server-modal > table > tbody > tr {
     line-height: 10px;
