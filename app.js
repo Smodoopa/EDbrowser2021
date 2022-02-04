@@ -56,6 +56,7 @@ const toggleModal = (listIndex) => {
         serverPlayers = serverList[listIndex.rowIndex - 1].players,
         sortedTeams = [];
 
+        if(selectedServer.players)
             if (selectedServer.teams) {
                 let originalTeamScores = JSON.parse(JSON.stringify(selectedServer.teamScores));
                 
@@ -68,12 +69,14 @@ const toggleModal = (listIndex) => {
                             tempTeamArray.push(player);
                     })
                     tempTeamArray.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
+
+
                     sortedTeams.push(tempTeamArray);
                 }
                 
                 for (var i = 0; i < 8; i++) {
                     let indexOfGreatest = originalTeamScores.indexOf(Math.max(...originalTeamScores));
-                    console.log(indexOfGreatest);
+                    
                     sortedTeams[indexOfGreatest].forEach((player, index) => {
                             if (index == 0) playerTable += '<tr style="background-color:' + teamColorCodes[player.team] + '"><td>' + teamNames[player.team] + ' Team</td><td></td><td>' + selectedServer.teamScores[player.team] + '</td><td></td><td></td><td></td></tr>';
 
@@ -86,13 +89,18 @@ const toggleModal = (listIndex) => {
                 }
 
             } else {
-                console.log("FFA");
                 serverPlayers.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
                 serverPlayers.map(player => {
                  let tableRow = '<tr style="background-color:' + player.primaryColor + '"><td>' + player.name + '</td><td>' + player.serviceTag + '</td><td>' + player.score + '</td><td>' + player.kills + '</td><td>' + player.deaths + '</td><td>' + player.assists + '</td></tr>';
                  playerTable += tableRow;
                 });
              }      
+
+        if (serverPlayers.length == 0) {
+            $('.noPlayers').show();
+        } else {
+            $('.noPlayers').hide();
+        }
 
         $('.server-map-image').attr("src", selectedServer.mapFile + ".png");       
         $('.header-text').text(selectedServer.variant + ' on ' + selectedServer.map);

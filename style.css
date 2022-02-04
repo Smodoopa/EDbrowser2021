@@ -5,6 +5,19 @@ body {
     color: white;
     font-family: "Arial";
 }
+.noPlayers {
+    background-color: #0b0918;
+    width: 37em;
+    height: 350px;
+    text-align: center;
+    position: relative;
+    display: none;
+}
+.noPlayers > h3 {
+    color: #a0a0a0c9;
+    position: relative;
+    top: 34%;
+}
 .footer {
     width: 100%;
     height: 50px;
