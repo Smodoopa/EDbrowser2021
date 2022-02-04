@@ -8,32 +8,34 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
      <div class="server-modal">
-        <div class="server-details">
-            <div class="server-header">
-                <h3 class="header-text"></h3>
-                <img class="close-btn" src="x.png" onclick="toggleModal()"></img>
+         <div class="modal-content">
+            <div class="server-details">
+                <div class="server-header">
+                    <h3 class="header-text"></h3>
+                    <img class="close-btn" src="x.png" onclick="toggleModal()"></img>
+                </div>
+                <img class="server-map-image" src="http://scooterpsu.github.io/images/maps/zanzibar.png"></img>
+                <div class="server-text">
+                    <div>Host: <span class="host"></span></div>
+                    <div>Name: <span class="name"></span></div>
+                    <div>IP: <span class="ip"></span></div>
+                    <div>Game Status: <span class="status"></span></div>
+                </div>
             </div>
-            <img class="server-map-image" src="http://scooterpsu.github.io/images/maps/zanzibar.png"></img>
-            <div class="server-text">
-                <div>Host: <span class="host"></span></div>
-                <div>Name: <span class="name"></span></div>
-                <div>IP: <span class="ip"></span></div>
-                <div>Game Status: <span class="status"></span></div>
+            <table class="player-table">
+                <tr class="player-table-columns">
+                    <th>Name</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Kills</th>
+                    <th>Deaths</th>
+                    <th>Assists</th>
+                </tr>
+            </table>
+            <div class="noPlayers">
+                <h3>Nobody's here.</h3>
             </div>
-        </div>
-        <table class="player-table">
-            <tr class="player-table-columns">
-                <th>Name</th>
-                <th></th>
-                <th>Score</th>
-                <th>Kills</th>
-                <th>Deaths</th>
-                <th>Assists</th>
-            </tr>
-        </table>
-        <div class="noPlayers">
-            <h3>Nobody's here.</h3>
-        </div>
+         </div>
     </div>
     <body>
         <div class="content">
