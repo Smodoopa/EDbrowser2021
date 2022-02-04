@@ -12,16 +12,15 @@ const loadServerIPs = () => fetch(ENDPOINT)
                 console.log(error);
             });
 
-const loadServerList = () => Promise.all(serverIPList.map(url => 
-        fetch('http://' + url)
-        .then(resp => resp.json())
+const loadServerList = () => Promise.all(serverIPList.map(async url => 
+        await fetch('http://' + url)
+        .then(resp => resp.json()).catch(err => console.log(err))
         )).then(data => {
             serverList = data;
             for (var i = 0; i < serverList.length; i++) 
                 serverList[i].mods.push(serverIPList[i]);
             
             serverList.sort((p1, p2) => (p1.numPlayers > p2.numPlayers) ? -1 : 1);
-            console.log(data);
         }).catch(err => 
             console.log(err)
         );
@@ -51,16 +50,14 @@ const reloadServerList = () => {
 const toggleModal = (listIndex) => {
     if ($('.server-modal').css('display') == "none") {
         $('.server-modal').css('display', 'flex');
-
+        $('body').css('overflow', 'hidden');
         let playerTable = '',
         selectedServer = serverList[listIndex.rowIndex - 1],
         serverPlayers = serverList[listIndex.rowIndex - 1].players,
         sortedTeams = [];
 
             if (selectedServer.teams) {
-                console.log("TEAM");
                 let originalTeamScores = JSON.parse(JSON.stringify(selectedServer.teamScores));
-                console.log(originalTeamScores);
                 
                 //Sorting Players of each Team.
                 //Add sorted teams to the main array.
@@ -73,8 +70,6 @@ const toggleModal = (listIndex) => {
                     tempTeamArray.sort((p1, p2) => (p1.score > p2.score) ? -1 : 1);
                     sortedTeams.push(tempTeamArray);
                 }
-                
-                console.log(sortedTeams);
                 
                 for (var i = 0; i < 8; i++) {
                     let indexOfGreatest = originalTeamScores.indexOf(Math.max(...originalTeamScores));
@@ -100,21 +95,19 @@ const toggleModal = (listIndex) => {
              }      
 
         $('.server-map-image').attr("src", selectedServer.mapFile + ".png");       
-        $('.server-header').text(selectedServer.variant + ' on ' + selectedServer.map);
+        $('.header-text').text(selectedServer.variant + ' on ' + selectedServer.map);
         $('.host').html(selectedServer.hostPlayer);
         $('.name').html(selectedServer.name);
         $('.ip').html(selectedServer.mods[0]);
         $('.status').html(selectedServer.status);
-
         $('.player-table').append(playerTable);
 
     } else {
         $('.server-modal').css('display', 'none');
+        $('body').css('overflow', 'auto');
         $('.server-modal > table > tbody').find("tr:gt(0)").remove();
     }
 }
-
-
 
 const loadData = async() => {
     await loadServerIPs();

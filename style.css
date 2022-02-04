@@ -26,7 +26,7 @@ body {
     top: 0px;
     position: fixed;
     height: 100%;
-    background-color: #000000e3;
+    background-color: #14211feb;
     display: none;
     align-content: center;
     align-items: center;
@@ -43,11 +43,9 @@ body {
     display: flex;
     flex-direction: column;
     width: 37em;
-    height: 380px;
-    background: #1a1a1a;
-}
-.server-map-image {
-    box-shadow: black 0px 0px 0px 1px;
+    height: 415px;
+    background: #050505;
+    align-content: space-between;
 }
 .player-table-columns {
     background-color: black;
@@ -55,32 +53,44 @@ body {
 .close-btn {
     width: 20px;
     height: 20px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    padding: 20px;
+    flex: 0 1 auto;
+    margin-left: auto;
     cursor: pointer;
-    padding: 12px;
+}
+.header-text {
+    flex: 1 1 auto;
+    margin-left: 40px;
 }
 .server-header {
-    background-color: #1a1a1a;
+    background-color: #090909;
     text-align: center;
     font-weight: 600;
-    padding: 6px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
 }
 .server-text {
     padding: 7px;
 }
 .host {
-    font-weight: 700;   
+    font-weight: 300;
+    color: #9c9c9c; 
 }
 .name {
-    font-weight: 700;
+    font-weight: 300;
+    color: #9c9c9c;
 }
 .ip {
-    font-weight: 700;
+    font-weight: 300;
+    color: #9c9c9c;
 }
 .status {
-    font-weight: 700;
+    font-weight: 300;
+    color: #9c9c9c;
 }
 .header-bar {
     display: -ms-flexbox;
