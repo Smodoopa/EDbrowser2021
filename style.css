@@ -7,7 +7,7 @@ body {
 }
 .noPlayers {
     background-color: #0b0918;
-    width: 37em;
+    width: 100%;
     height: 350px;
     text-align: center;
     position: relative;
@@ -41,26 +41,32 @@ body {
     height: 100%;
     background-color: #14211feb;
     z-index: 1;
+    display: none;
+    align-content: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 .modal-content {
-    /* border: 1px #929292 solid; */
-    height: 100%;
+    border: 1px #929292 solid;
     flex-direction: column;
     justify-content: center;
     flex-wrap: nowrap;
     display: flex;
     align-content: center;
+    width: 37em;
     align-items: center;
 }
 .player-table {
     background-color: #0b0918;
-    width: 37em;
+    width: 100%;
+    font-size: 0.9em;
 }
 .server-details {
     justify-content: center;
     display: flex;
     flex-direction: column;
-    width: 37em;
+    width: 100%;
     height: 415px;
     background: #050505;
     align-content: space-between;
@@ -225,30 +231,6 @@ body {
     cursor: pointer;
     background-color: #ffffff21;
 }
- @media all and (max-width: 350px) {
-    .server-table {
-        font-size: 0.4em !important;
-    }
-  }
-
-  @media all and (max-width: 500px) {
-    .server-table {
-        font-size: 0.5em !important;
-    }
-    .player-table {
-        width: 100% !important;
-    }
-    .server-details {
-        width: 100% !important;
-        height: auto !important;
-    }
-    .modal-content {
-        justify-content: start !important;
-    }
-    .server-modal > table > tbody > tr {
-        font-size: 11px !important;
-    }
-  }
 
   @media all and (max-width: 750px) {
     .content {
@@ -256,7 +238,7 @@ body {
         width: 100%;
     }
     .server-table {
-        font-size: 0.7em;
+        font-size: 0.7em !important;
     }
     .header-bar {
         font-size: 10px;
@@ -279,3 +261,23 @@ body {
     }
   }
 
+  @media all and (max-width: 500px) {
+    .server-table {
+        font-size: 0.5em !important;
+    }
+    .modal-content {
+        width: 100% !important;
+    }
+    .modal-content {
+        justify-content: start !important;
+    }
+    .server-modal > table > tbody > tr {
+        font-size: 11px !important;
+    }
+  }
+
+  @media all and (max-width: 350px) {
+    .server-table {
+        font-size: 0.4em !important;
+    }
+  }

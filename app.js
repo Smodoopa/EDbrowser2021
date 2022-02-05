@@ -49,7 +49,7 @@ const reloadServerList = () => {
 
 const toggleModal = (listIndex) => {
     if ($('.server-modal').css('display') == "none") {
-        $('.server-modal').css('display', 'block');
+        $('.server-modal').css('display', 'flex');
         $('body').css('overflow', 'hidden');
         let playerTable = '',
         selectedServer = serverList[listIndex.rowIndex - 1],
