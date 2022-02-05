@@ -231,40 +231,13 @@ body {
     background-color: #ffffff21;
 }
 
-@media screen and (max-width: 350px) {
-    .server-table {
-        font-size: 0.4em !important;
-    }
-    .player-table {
-        font-size: 0.4em !important;
-    }
-  }
-
-@media screen and (max-width: 500px) {
-    .server-table {
-        font-size: 0.5em !important;
-    }
-    .player-table {
-        font-size: 0.5em !important;
-    }
-    .modal-content {
-        width: 100% !important;
-    }
-    .server-modal {
-        justify-content: start !important;
-    }
-    .server-modal > table > tbody > tr {
-        font-size: 11px !important;
-    }
-  }
-
   @media screen and (max-width: 750px) {
     .content {
         max-width: 100%;
         width: 100%;
     }
     .server-table {
-        font-size: 0.7em !important;
+        font-size: 0.7em;
     }
     .player-table {
         font-size: 0.7em !important;
@@ -287,5 +260,34 @@ body {
     }
     td, th {
         padding: 5px;
+    }
+  }
+
+  
+@media screen and (max-width: 500px) {
+    .server-table {
+        font-size: 0.5em;
+    }
+    .player-table {
+        font-size: 0.5em !important;
+    }
+    .modal-content {
+        width: 100% !important;
+    }
+    .server-modal {
+        align-items: flex-start !important;
+    }
+    .server-modal > table > tbody > tr {
+        font-size: 11px !important;
+    }
+  }
+
+  
+@media screen and (max-width: 350px) {
+    .server-table {
+        font-size: 0.4em;
+    }
+    .player-table {
+        font-size: 0.4em !important;
     }
   }
