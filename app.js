@@ -49,7 +49,7 @@ const reloadServerList = () => {
 
 const toggleModal = (listIndex) => {
     if ($('.server-modal').css('display') == "none") {
-        $('.server-modal').css('display', 'flex');
+        $('.server-modal').css('display', 'block');
         $('body').css('overflow', 'hidden');
         let playerTable = '',
         selectedServer = serverList[listIndex.rowIndex - 1],
@@ -113,7 +113,7 @@ const toggleModal = (listIndex) => {
     } else {
         $('.server-modal').css('display', 'none');
         $('body').css('overflow', 'auto');
-        $('.server-modal > table > tbody').find("tr:gt(0)").remove();
+        $('.server-modal > .modal-content > table > tbody').find("tr:gt(0)").remove();
     }
 }
 

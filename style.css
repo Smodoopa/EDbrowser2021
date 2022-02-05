@@ -40,15 +40,17 @@ body {
     position: fixed;
     height: 100%;
     background-color: #14211feb;
-    display: none;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     z-index: 1;
 }
 .modal-content {
-    border: 1px #929292 solid;
+    /* border: 1px #929292 solid; */
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    display: flex;
+    align-content: center;
+    align-items: center;
 }
 .player-table {
     background-color: #0b0918;
@@ -240,7 +242,7 @@ body {
         width: 100% !important;
         height: auto !important;
     }
-    .server-modal {
+    .modal-content {
         justify-content: start !important;
     }
     .server-modal > table > tbody > tr {
