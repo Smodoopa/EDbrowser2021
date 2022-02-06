@@ -72,6 +72,8 @@ body {
 }
 .player-table-columns {
     background-color: black;
+    line-height: 8px;
+    font-size: 13px;
 }
 .close-btn {
     width: 20px;
@@ -215,8 +217,8 @@ body {
     padding: 8px;
     text-shadow: black 0px 0px 10px;
   }
-  .server-modal > table > tbody > tr {
-    line-height: 10px;
+  .modal-content > table > tbody > tr {
+    line-height: 8px;
     font-size: 13px;
   }
   tr:first-child {
